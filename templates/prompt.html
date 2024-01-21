@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Craft Story Narrator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+        <style>
+           body {
+  background-image:url("{{url_for('static', filename='ravi31mar_1.jpg')}}");
+  background-size: cover;
+}
+
+
+
+
+.container
+{
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 8fr 4fr 1fr;
+    grid-template-rows: 1fr 2fr 7fr 4fr repeat(2,1fr);
+    row-gap: 9px;
+    column-gap: 40px;
+}
+    
+    .prompt
+    {
+        grid-area: 2/2/3/4;
+       border: none;
+        
+    }
+    .image
+    {
+        grid-area: 3/3/4/4;
+        border: 3px solid black;
+        border-radius: 10px;
+        
+    }
+    .content
+    {
+        grid-area:3/2/5/3;
+        background-color: bisque;
+        border-radius: 10px;
+    }
+    .tts
+    {
+        display: flex;
+        grid-area: 5/2/6/3;
+        justify-content: space-evenly;
+        
+    }
+    .followUp
+    {
+        grid-area:4/3/6/4;
+        justify-content: space-evenly;
+        border-radius: 10px;
+        
+    }
+
+
+
+/* Search Bar CSS */
+form
+{
+    display: flex;
+    justify-content: center;
+    height: 8vh;
+    align-content: center;
+}
+input
+{
+    border-radius: 5px;
+    flex-grow: 10;
+    font-size: larger;
+    padding-left: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+button
+{
+    flex-grow: 1;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    background-color: #ffc94d;
+    border: none;
+    font-size: large;
+    font-weight: bold;
+}
+button:hover
+{
+    background-color: #fbfcdc;
+}
+
+/* Image CSS*/
+img
+{
+    height: 50vh;
+    width: 70vh;
+}
+
+
+/* Translate and TTS Buttons */
+#tts
+{
+    margin: 0px 80px 0px 80px;
+    border: none;
+    font-size: x-large;
+    margin-left: 170px; 
+    height: 40px;
+    width: 200px;
+    
+    
+}
+#translate
+{
+    margin:  0px 80px 0px 80px;
+    border: none    ;
+    font-size: x-large;
+}
+p{
+    font-family: sans-serif;
+    font-size: medium;
+    font-size: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+hr
+{
+    background-color: black;
+}
+       
+    
+
+
+
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="prompt">
+                <form class="searchBar"  action="/prompt" method="POST" id="searchF">
+                    <input type="text" name="prompt" id="s" placeholder="{{prompt}}">
+                    <button type="submit" id="searchButton" >Search</button>
+                </form>
+            </div>
+            <div class="image">
+                <img src="{{url_for('static', filename='bg.jpg')}}">
+            </div>
+            <div class="content">
+                <center>
+                    {% if prompt == "Ahalya or Bharata or Dasharatha or Hanuman or Jambuvan or Kausalya or Kumbhkarna or Mandavi or Rama or Sita or Shabari or Ravana or jatayu"  %}
+                        <h1 style="margin-left: 30px;">The Tale of Ramayana</h1>
+                    {% elif prompt == "Krishna or Arjuna or Bhishma or Drona or Karna or Yudhishthira or Bhima or Nakula and Sahadeva or Draupadi and Duryodhana or Shakuni or Gandhari or Vidura or Kunti" %}
+                        <h1 style="margin-left: 30px;">The Tale of Mahabharata</h1>
+                    {% else %}
+                        <h1 style="margin-left: 30px;">The Tale of {{prompt}}</h1>
+                    {% endif %}
+                </center>
+                
+                <hr style="height: 2px">
+                <p>{{generated_answer}}</p>
+            </div>
+            <div class="followUp">
+                <button type="submit" id="tts" >Narrate</button>
+            </div>
+            <div class="tts">
+                
+            </div>
+        </div>
+        
+        <script src="" async defer></script>
+        <script>
+            document.getElementById("searchButton").addEventListener("click", function() {
+                var form = document.getElementById("searchF");
+                form.submit();
+            });
+                
+
+
+
+
+
+
+
+            var text = "{{generated_answer}}";
+console.log(text);
+var speechBtn = document.getElementById("tts");
+var synth = window.speechSynthesis;
+var isSpeaking = false;
+var utterance; 
+
+function textToSpeech(text) {
+    if (synth.paused) {
+        synth.resume();
+    } else {
+        utterance = new SpeechSynthesisUtterance(text);
+        synth.speak(utterance);
+    }
+}
+
+speechBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    textToSpeech(text);
+});
+
+
+        </script>
+    </body>
+</html>
