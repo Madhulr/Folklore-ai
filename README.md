@@ -6,12 +6,12 @@ To run the application, you need to have Python 3 and pip installed on your syst
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/AkshayGMys/StoryGenerationAI
+    git clone https://github.com/AkshayGMys/Folklore-ai
     ```
 
 2. Navigate to the project directory:
     ```bash
-    cd StoryGenerationAI
+    cd Folklore-ai
     ```
 
 3. Create a virtual environment and activate it:
