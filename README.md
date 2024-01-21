@@ -6,7 +6,7 @@ To run the application, you need to have Python 3 and pip installed on your syst
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/indian-mythology-story-generator.git
+    git clone https://github.com/AkshayGMys/StoryGenerationAI
     ```
 
 2. Navigate to the project directory:
