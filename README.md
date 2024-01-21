@@ -11,7 +11,7 @@ To run the application, you need to have Python 3 and pip installed on your syst
 
 2. Navigate to the project directory:
     ```bash
-    cd indian-mythology-story-generator
+    cd StoryGenerationAI
     ```
 
 3. Create a virtual environment and activate it:
